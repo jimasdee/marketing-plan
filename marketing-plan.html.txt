@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطة تسويقية متكاملة</title>
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for a wide range of icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base styles for the body and container, ensuring full responsiveness and aesthetic appeal */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Soft gradient background for a modern feel */
+            background: linear-gradient(to bottom right, #f0f2f5, #e0e7ee);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensures content takes at least full viewport height */
+            margin: 0;
+            padding: 20px; /* Padding around the main container */
+            box-sizing: border-box; /* Includes padding and border in element's total width and height */
+        }
+        .presentation-container {
+            background-color: #ffffff;
+            border-radius: 2rem; /* More rounded corners for a friendly look */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Deeper shadow for depth */
+            width: 100%;
+            max-width: 1000px; /* Wider for better content display on larger screens */
+            min-height: 680px; /* Taller slides for more content space */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Hides content outside the rounded corners */
+            position: relative;
+        }
+        .slide-content-wrapper {
+            flex-grow: 1; /* Allows content area to expand */
+            position: relative;
+            padding: 2.5rem; /* Consistent padding inside slides */
+        }
+        /* Slide specific styles for transitions and positioning */
+        .slide {
+            padding: 2.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically center content */
+            align-items: flex-start; /* Align content to the start (right for RTL) */
+            text-align: right; /* Text aligns to the right for Arabic */
+            /* Smooth transitions for opacity and horizontal movement */
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            opacity: 0; /* Hidden by default */
+            transform: translateX(100%); /* Start off-screen to the right (for RTL slide-in) */
+            position: absolute; /* Position slides on top of each other */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .slide.active {
+            opacity: 1; /* Fully visible when active */
+            transform: translateX(0); /* Slide into view */
+            position: static; /* Takes up space in the flow when active */
+        }
+        /* Typography styles for headings, lists, and paragraphs */
+        .slide h1 {
+            font-size: 3rem; /* Larger main title */
+            font-weight: 800; /* Extra bold for impact */
+            color: #2c3e50; /* Dark blue-gray for strong contrast */
+            margin-bottom: 1.5rem;
+            width: 100%;
+            text-align: center; /* Center align main titles */
+            line-height: 1.2;
+        }
+        .slide h2 {
+            font-size: 2.25rem; /* Larger sub-heading */
+            font-weight: 700;
+            color: #34495e; /* Slightly lighter dark blue-gray */
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #3498db; /* Thicker blue underline for emphasis */
+            padding-bottom: 0.75rem;
+            width: 100%;
+            text-align: right;
+        }
+        .slide h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 1rem;
+            width: 100%;
+            text-align: right;
+        }
+        .slide ul {
+            list-style-type: none; /* Remove default list bullets */
+            padding: 0;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        .slide ul li {
+            font-size: 1.2rem; /* Larger list items for readability */
+            color: #34495e;
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-right: 2rem; /* Space for custom icon */
+            line-height: 1.6;
+            display: flex; /* Use flex for icon alignment */
+            align-items: flex-start;
+        }
+        .slide ul li i {
+            color: #3498db; /* Blue icon for consistency */
+            font-size: 1.4rem;
+            position: absolute;
+            right: 0; /* Position icon to the right for RTL */
+            top: 0.2rem;
+        }
+        .slide p {
+            font-size: 1.2rem;
+            color: #34495e;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            width: 100%;
+        }
+        /* Navigation button styles for interactive elements */
+        .navigation-buttons {
+            display: flex;
+            justify-content: center; /* Center buttons */
+            padding: 1.5rem;
+            gap: 1rem; /* Space between buttons */
+            background-color: #ecf0f1; /* Light gray background for button area */
+            border-top: 1px solid #e0e0e0;
+            border-bottom-left-radius: 2rem; /* Match container's bottom radius */
+            border-bottom-right-radius: 2rem;
+        }
+        .nav-button {
+            background-color: #3498db; /* Blue button */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem; /* More rounded buttons */
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            /* Smooth transitions for hover effects */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .nav-button:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
+        }
+        .nav-button:disabled {
+            background-color: #bdc3c7; /* Gray for disabled state */
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Image and icon specific styles for visual elements */
+        .slide-image {
+            max-width: 80%; /* Ensures image is responsive */
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .icon-large {
+            font-size: 4rem; /* Large icons for emphasis */
+            color: #3498db;
+            margin-bottom: 1.5rem;
+        }
+        .slide-grid {
+            display: grid;
+            /* Responsive grid: columns adjust based on available space, min width 280px */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem; /* Space between grid items */
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .grid-item {
+            background-color: #f8f8f8;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for grid items */
+            text-align: center;
+        }
+        .grid-item i {
+            font-size: 3rem;
+            color: #2ecc71; /* Green for positive aspects/icons */
+            margin-bottom: 0.75rem;
+        }
+        .grid-item h3 {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            color: #34495e;
+            text-align: center;
+        }
+        .grid-item p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* Table styles for data presentation */
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse; /* Collapse borders for a clean look */
+            margin-top: 1.5rem;
+            background-color: #fcfcfc;
+            border-radius: 0.75rem;
+            overflow: hidden; /* Ensures rounded corners are applied to content */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .cost-table th, .cost-table td {
+            border: 1px solid #e0e0e0; /* Light borders */
+            padding: 1rem;
+            text-align: right; /* Align text to the right for RTL */
+            font-size: 1.05rem;
+            color: #34495e;
+        }
+        .cost-table th {
+            background-color: #eaf2f8; /* Light blue-gray for headers */
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        .cost-table tr:nth-child(even) {
+            background-color: #f8f8f8; /* Zebra striping for readability */
+        }
+        .cost-table tfoot td {
+            font-weight: 700;
+            background-color: #d4e6f1; /* Slightly darker for total row */
+            color: #2c3e50;
+            font-size: 1.2rem;
+        }
+        /* Highlight text colors */
+        .highlight-text-green {
+            color: #28a745; /* Green for positive values */
+            font-weight: 700;
+        }
+        .highlight-text-red {
+            color: #dc3545; /* Red for cautionary values */
+            font-weight: 700;
+        }
+        .highlight-text-blue {
+            color: #3498db; /* Blue for general highlights */
+            font-weight: 700;
+        }
+
+        /* Responsive adjustments for mobile and tablet devices */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px; /* Reduce overall padding on smaller screens */
+            }
+            .presentation-container {
+                min-height: 550px; /* Reduce minimum height */
+                margin: 10px;
+                border-radius: 1.5rem; /* Slightly less rounded corners */
+            }
+            .slide {
+                padding: 1.5rem; /* Reduce slide padding */
+            }
+            .slide h1 {
+                font-size: 2.2rem; /* Smaller main title */
+                margin-bottom: 1rem;
+            }
+            .slide h2 {
+                font-size: 1.75rem; /* Smaller sub-heading */
+                margin-bottom: 1rem;
+            }
+            .slide h3 {
+                font-size: 1.4rem; /* Smaller third-level heading */
+                margin-bottom: 0.75rem;
+            }
+            .slide ul li, .slide p {
+                font-size: 1rem; /* Smaller text for lists and paragraphs */
+                margin-bottom: 0.6rem;
+                padding-right: 1.5rem; /* Adjust icon padding */
+            }
+            .slide ul li i {
+                font-size: 1.2rem;
+                top: 0.1rem;
+            }
+            .navigation-buttons {
+                padding: 1rem;
+                gap: 0.75rem;
+            }
+            .nav-button {
+                padding: 0.6rem 1.2rem;
+                font-size: 1rem;
+            }
+            .cost-table th, .cost-table td {
+                padding: 0.6rem;
+                font-size: 0.9rem;
+            }
+            .slide-grid {
+                grid-template-columns: 1fr; /* Stack columns on very small screens */
+                gap: 1rem;
+            }
+            .icon-large {
+                font-size: 3rem; /* Smaller large icons */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-content-wrapper">
+
+            <!-- Slide 1: Title Slide - Introduction to the presentation -->
+            <div class="slide active" id="slide1">
+                <div class="flex flex-col items-center justify-center w-full h-full text-center">
+                    <!-- Placeholder image for company logo -->
+                    <img src="https://placehold.co/200x200/3498db/ffffff?text=LOGO" alt="Company Logo" class="slide-image mb-8">
+                    <h1 class="text-blue-700">خطة تسويقية متكاملة</h1>
+                    <h2 class="text-gray-600 font-normal text-2xl mt-4">لاستهداف الأطباء وطلاب الكليات الطبية والصيدلة</h2>
+                    <p class="text-gray-500 text-lg mt-8">عرض تقديمي للمدير التسويقي</p>
+                </div>
+            </div>
+
+            <!-- Slide 2: Executive Summary - High-level overview of the plan -->
+            <div class="slide" id="slide2">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-chart-line icon-large"></i>
+                    <h1>الملخص التنفيذي</h1>
+                </div>
+                <p class="text-center mb-6">يقدم هذا التقرير خطة تسويقية متكاملة تستهدف فئة الأطباء (العاملين، وطلاب كليات الطب والصيدلة وطب الأسنان) في محافظات وجه بحري بجمهورية مصر العربية، وذلك بالاعتماد على مجموعات الفيسبوك المتخصصة.</p>
+                <div class="slide-grid">
+                    <div class="grid-item">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>الاستراتيجية الأساسية</h3>
+                        <p>نموذج الممثلين الإقليميين من طلاب الدراسات العليا لنشر مقاطع فيديو بارزة للمنتج.</p>
+                    </div>
+                    <div class="grid-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <h3>الاستثمار السنوي الأولي</h3>
+                        <p>حوالي <strong class="text-blue-600">11,201,000 جنيه مصري</strong> (تغطية المحتوى، الحوافز، الرسوم، التوظيف).</p>
+                    </div>
+                    <div class="grid-item">
+                        <i class="fas fa-percent"></i>
+                        <h3>زيادة المبيعات المتوقعة</h3>
+                        <p>من <strong class="text-green-600">5% إلى 15%</strong> في السنة الأولى، مما يعادل <strong class="text-green-600">600,000 إلى 1,800,000 جنيه مصري</strong> سنويًا.</p>
+                    </div>
+                    <div class="grid-item">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>نسبة المبيعات إلى التكاليف</h3>
+                        <p>تتراوح بين <strong class="text-red-600">0.05:1 و 0.16:1</strong> في السنة الأولى (استثمار استراتيجي طويل الأجل).</p>
+                    </div>
+                </div>
+                <p class="text-center mt-6 text-sm text-gray-500">يعتمد النجاح على التخطيط الدقيق، الالتزام باللوائح، والمراقبة المستمرة.</p>
+            </div>
+
+            <!-- Slide 3: Introduction to Marketing Initiative - Setting the context -->
+            <div class="slide" id="slide3">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-lightbulb icon-large"></i>
+                    <h1>مقدمة إلى المبادرة التسويقية</h1>
+                </div>
+                <h2>سياق: التسويق الدوائي في المشهد الرقمي المصري</h2>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> الفيسبوك قناة لا غنى عنها للتواصل المهني وتبادل المعلومات والتعليم الطبي المستمر.</li>
+                    <li><i class="fas fa-check-circle"></i> توفير بيئة فريدة للتفاعل المباشر والموجه مع الجمهور المستهدف.</li>
+                    <li><i class="fas fa-check-circle"></i> تحدي الوصول بفعالية مع الالتزام بالأطر التنظيمية الصارمة.</li>
+                    <li><i class="fas fa-check-circle"></i> الاستفادة من الطبيعة المجتمعية لمجموعات الفيسبوك لبناء الثقة ونشر المعلومات.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4: Strategic Objectives of the Campaign - Defining goals -->
+            <div class="slide" id="slide4">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-crosshairs icon-large"></i>
+                    <h1>الأهداف الاستراتيجية للحملة</h1>
+                </div>
+                <ul>
+                    <li><i class="fas fa-angle-left"></i> **زيادة الوعي بالعلامة التجارية وفهم المنتج:** ضمان دراية الجمهور بالمنتجات وفوائدها.</li>
+                    <li><i class="fas fa-angle-left"></i> **دفع تبني المنتج وزيادة المبيعات:** عبر تأثير الأقران ونشر المعلومات الموثوقة.</li>
+                    <li><i class="fas fa-angle-left"></i> **تأسيس تواصل مباشر ومحلي:** مع الأطباء وواصفي الأدوية المستقبليين.</li>
+                    <li><i class="fas fa-angle-left"></i> **جمع معلومات السوق والملاحظات:** الحصول على رؤى فورية حول احتياجات السوق وتصور المنتج.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5: Target Audience Segmentation - Who are we reaching? -->
+            <div class="slide" id="slide5">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-users icon-large"></i>
+                    <h1>تقسيم الجمهور المستهدف</h1>
+                </div>
+                <h2>الأطباء، وطلاب الطب، والصيدلة، وطب الأسنان</h2>
+                <div class="slide-grid">
+                    <div class="grid-item">
+                        <i class="fas fa-user-md"></i>
+                        <h3>الأطباء (الممارسون)</h3>
+                        <p>صانعو القرار الرئيسيون في وصف الأدوية. التركيز على الأهمية السريرية والفعالية.</p>
+                    </div>
+                    <div class="grid-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>طلاب كليات الطب والصيدلة وطب الأسنان</h3>
+                        <p>واصفو الأدوية والمؤثرون المستقبليون. التفاعل المبكر لبناء ولاء طويل الأمد.</p>
+                    </div>
+                    <div class="grid-item">
+                        <i class="fas fa-book-open"></i>
+                        <h3>تركيز خاص: الدراسات العليا</h3>
+                        <p>يتم استهداف طلاب الدراسات العليا لأدوار الممثلين لمعرفتهم وشبكاتهم المهنية.</p>
+                    </div>
+                </div>
+                <p class="text-center mt-6 text-sm text-gray-500">التبادل المنظم يتجاوز التعويض المالي المباشر لجذب طلاب الدراسات العليا ذوي الكفاءة العالية.</p>
+            </div>
+
+            <!-- Slide 6: Geographical Market Analysis - Where are we reaching? -->
+            <div class="slide" id="slide6">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-map-marked-alt icon-large"></i>
+                    <h1>تحليل السوق الجغرافي</h1>
+                </div>
+                <h2>نظرة عامة على محافظات وجه بحري</h2>
+                <ul>
+                    <li><i class="fas fa-map-pin"></i> منطقة دلتا النيل: كثافة سكانية عالية وتركيز للمؤسسات الطبية والأكاديمية.</li>
+                    <li><i class="fas fa-city"></i> محافظات وجه بحري: الإسكندرية، البحيرة، الدقهلية، دمياط، الغربية، الإسماعيلية، كفر الشيخ، المنوفية، بورسعيد، القليوبية، الشرقية، السويس.</li>
+                    <li><i class="fas fa-sitemap"></i> يعتمد النجاح على فهم دقيق للتقسيمات الإدارية ("المراكز") لنشر الممثلين بفعالية.</li>
+                    <li><i class="fas fa-calculator"></i> **إجمالي المراكز المقدرة في محافظات وجه بحري: حوالي 108 مركزًا.**</li>
+                </ul>
+            </div>
+
+            <!-- Slide 7: Detailed Geographical Breakdown Table - Specific locations -->
+            <div class="slide" id="slide7">
+                <h1>محافظات وجه بحري والعدد التقديري للمراكز</h1>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>المحافظة</th>
+                            <th>العدد التقديري للمراكز/الأحياء</th>
+                            <th>أمثلة على المراكز/الأحياء الرئيسية</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>الإسكندرية</td><td>6</td><td>المنتزه، شرق، الجمرك، وسط، الدخيلة-العجمي، العامرية</td></tr>
+                        <tr><td>البحيرة</td><td>15</td><td>دمنهور، كفر الدوار، أبو حمص، رشيد، إدكو، الدلنجات، إيتاي البارود، كوم حمادة، المحمودية، الرحمانية، شبراخيت، حوش عيسى، وادي النطرون، بدر، أبو المطامير</td></tr>
+                        <tr><td>الدقهلية</td><td>11</td><td>طلخا، الجمالية، السنبلاوين، أجا، دكرنس، المنزلة، المطرية، شربين، ميت غمر، منية النصر، تمي الأمديد</td></tr>
+                        <tr><td>دمياط</td><td>5</td><td>دمياط، فارسكور، كفر سعد، الزرقا، كفر البطيخ</td></tr>
+                        <tr><td>الغربية</td><td>8</td><td>طنطا، المحلة الكبرى، كفر الزيات، سمنود، زفتى، بسيون، قطور، السنطة</td></tr>
+                        <tr><td>الإسماعيلية</td><td>7</td><td>الإسماعيلية، التل الكبير، أبو صوير، القصاصين، فايد، القنطرة غرب، القنطرة شرق</td></tr>
+                        <tr><td>كفر الشيخ</td><td>10</td><td>كفر الشيخ، دسوق، فوه، بلطيم، البرلس، سيدي سالم، مطوبس، الحامول، الرياض، قلين</td></tr>
+                        <tr><td>المنوفية</td><td>9</td><td>شبين الكوم، منوف، أشمون، قويسنا، تلا، الباجور، الشهداء، بركة السبع، مدينة السادات</td></tr>
+                        <tr><td>بورسعيد</td><td>8</td><td>الضواحي، العرب، المناخ، الجنوب، المناصرة، الشرق، الزهور، بورفؤاد</td></tr>
+                        <tr><td>القليوبية</td><td>9</td><td>بنها، طوخ، قليوب، كفر شكر، شبين القناطر، الخانكة، مدينة العبور، الخصوص، القناطر الخيرية</td></tr>
+                        <tr><td>الشرقية</td><td>15</td><td>الزقازيق، بلبيس، منيا القمح، فاقوس، أبو كبير، ديرب نجم، الحسينية، الإبراهيمية، ههيا، كفر صقر، مشتول السوق، أولاد صقر، صان الحجر، القنايات، القرين، الصالحية الجديدة، مدينة العاشر من رمضان</td></tr>
+                        <tr><td>السويس</td><td>5</td><td>الأربعين، السويس، الجناين، فيصل، عتاقة</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>**الإجمالي**</td>
+                            <td>**108**</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- Slide 8: Facebook Group Identification - Where to find the audience online -->
+            <div class="slide" id="slide8">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fab fa-facebook-square icon-large"></i>
+                    <h1>تحديد وتقدير مجموعات الفيسبوك ذات الصلة</h1>
+                </div>
+                <p>سيتم تحديد مجموعات الفيسبوك ذات الصلة التي ينشط فيها الأطباء وطلاب الطب والصيدلة وطب الأسنان لتحقيق أقصى وصول:</p>
+                <div class="slide-grid">
+                    <div class="grid-item">
+                        <i class="fas fa-stethoscope"></i>
+                        <h3>مجموعات مهنية</h3>
+                        <p>نقابات الأطباء/الصيادلة، تخصصات طبية (مغلقة، تتطلب موافقة).</p>
+                    </div>
+                    <div class="grid-item">
+                        <i class="fas fa-university"></i>
+                        <h3>مجموعات أكاديمية</h3>
+                        <p>كليات الطب/الصيدلة/طب الأسنان بالجامعات المصرية (حيوية لطلاب الدراسات العليا).</p>
+                    </div>
+                    <div class="grid-item">
+                        <i class="fas fa-comments"></i>
+                        <h3>مجموعات دراسية/بحثية</h3>
+                        <p>تبادل المعرفة والمناقشات السريرية (مثال: المنتدى العربي لأطباء الأسنان).</p>
+                    </div>
+                </div>
+                <p class="text-center mt-6">**العدد الإجمالي للمجموعات النشطة والمهمة التي سيتم التفاعل معها بانتظام: حوالي 160 مجموعة.**</p>
+                <table class="cost-table mt-6">
+                    <thead>
+                        <tr>
+                            <th>الشريحة المستهدفة</th>
+                            <th>العدد التقديري للمجموعات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>الأطباء (الممارسون)</td><td>50</td></tr>
+                        <tr><td>طلاب الطب</td><td>50</td></tr>
+                        <tr><td>طلاب الصيدلة</td><td>35</td></tr>
+                        <tr><td>طلاب طب الأسنان</td><td>25</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>**الإجمالي**</td>
+                            <td>**160**</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- Slide 9: Operational Framework: Representative Model - How the plan will be executed -->
+            <div class="slide" id="slide9">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-handshake icon-large"></i>
+                    <h1>الإطار التشغيلي: نموذج الممثلين</h1>
+                </div>
+                <h2>دور ومسؤوليات الممثلين الإقليميين من الطلاب</h2>
+                <p>سيتم اختيار الممثلين من طلاب الدراسات العليا (ماجستير/دكتوراه) لمكانتهم الأكاديمية وشبكاتهم.</p>
+                <ul>
+                    <li><i class="fas fa-user-plus"></i> الانضمام إلى مجموعات الفيسبوك ذات الصلة والمحافظة على عضويتهم النشطة.</li>
+                    <li><i class="fas fa-users-gear"></i> بناء العلاقات وتطوير روابط قوية وموثوقة مع أعضاء المجموعة ومديريها.</li>
+                    <li><i class="fas fa-video"></i> نشر فيديوهات المنتج بشكل استراتيجي ومناسب.</li>
+                    <li><i class="fas fa-reply-all"></i> المشاركة في المناقشات والتفاعل مع استفسارات الأعضاء.</li>
+                    <li><i class="fas fa-chart-simple"></i> جمع الملاحظات ورصد آراء الأعضاء وتقديم تقارير دورية.</li>
+                </ul>
+                <p class="text-center mt-6 text-sm text-gray-500">التبادل المنظم يتجاوز التعويض المالي لجذب الكفاءات العالية.</p>
+            </div>
+
+            <!-- Slide 10: Proposed Incentive Structure - Motivating representatives -->
+            <div class="slide" id="slide10">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-award icon-large"></i>
+                    <h1>هيكل الحوافز المقترح للممثلين</h1>
+                </div>
+                <h2>لضمان تحفيز الممثلين والاحتفاظ بهم:</h2>
+                <div class="slide-grid">
+                    <div class="grid-item">
+                        <i class="fas fa-money-check-dollar"></i>
+                        <h3>الحوافز المالية</h3>
+                        <ul>
+                            <li>راتب أساسي شهري: 4,000 جنيه مصري.</li>
+                            <li>مكافآت الأداء الشهرية التقديرية: 1,000 جنيه مصري.</li>
+                            <li>**إجمالي الحافز الشهري:** 5,000 جنيه مصري.</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>الحوافز غير المالية (التبادل المنظم)</h3>
+                        <ul>
+                            <li>ورش عمل للتطوير المهني (عرض، تسويق رقمي).</li>
+                            <li>فرص التواصل مع المديرين والمتخصصين.</li>
+                            <li>وصول حصري إلى المحتوى التعليمي المتقدم.</li>
+                            <li>خطابات توصية وفرص توظيف مستقبلية.</li>
+                            <li>برامج تقدير للاحتفال بالإنجازات.</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-center mt-6 text-sm text-gray-500">هذه المبالغ أقل من رواتب الممثل الطبي بدوام كامل، مما يقلل التكاليف مع الاستفادة من دوافع طلاب الدراسات العليا.</p>
+            </div>
+
+            <!-- Slide 11: Product Video Development - Content creation strategy -->
+            <div class="slide" id="slide11">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-film icon-large"></i>
+                    <h1>تطوير فيديوهات المنتج</h1>
+                </div>
+                <h2>المفهوم، الإنتاج، والنشر</h2>
+                <ul>
+                    <li><i class="fas fa-lightbulb"></i> **المفهوم:** فيديوهات موجزة، غنية بالمعلومات، وجذابة بصريًا، متوافقة مع اللوائح. يفضل مقاطع قصيرة (30-60 ثانية).</li>
+                    <li><i class="fas fa-camera-retro"></i> **الإنتاج:** استثمار في خدمات إنتاج احترافية لضمان "فيديوهات بارزة".
+                        <ul>
+                            <!-- Converted 6,000 USD to EGP (6000 * 48 = 288,000) -->
+                            <li>تكلفة الفيديو الرئيسي (60-90 ثانية): 288,000 جنيه مصري.</li>
+                            <!-- Converted 1,500 USD to EGP (1500 * 48 = 72,000) -->
+                            <li>تكلفة المقطع القصير (15-30 ثانية): 72,000 جنيه مصري.</li>
+                            <li>تكلفة جلسة تصوير فوتوغرافي: 3,000 جنيه مصري.</li>
+                        </ul>
+                    </li>
+                    <li><i class="fas fa-share-alt"></i> **النشر:** يقوم الممثلون بنشر الفيديوهات بطريقة طبيعية وغير ترويجية بشكل مفرط، ومتوافقة مع إرشادات المجموعة.</li>
+                </ul>
+                <p class="text-center mt-6 text-sm text-gray-500">جودة المحتوى المرئي هي حجر الزاوية في هذه الحملة.</p>
+            </div>
+
+            <!-- Slide 12: Facebook Group Interaction Strategy - Engagement tactics -->
+            <div class="slide" id="slide12">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-comments icon-large"></i>
+                    <h1>استراتيجية التفاعل مع مجموعات الفيسبوك</h1>
+                </div>
+                <h2>لتحقيق أقصى تأثير وتجنب الرفض:</h2>
+                <ul>
+                    <li><i class="fas fa-hand-holding-heart"></i> **التفاعل الأصيل:** التفاعل بشكل أصيل مع الأعضاء، والرد على التعليقات، والمشاركة في المناقشات.</li>
+                    <li><i class="fas fa-shapes"></i> **المحتوى القائم على القيمة:** توفير محتوى تعليمي أو معلوماتي (دراسات حالة، أسئلة وأجوبة مع خبراء).</li>
+                    <li><i class="fas fa-gavel"></i> **الالتزام بمعايير مجتمع الفيسبوك:** الالتزام الصارم لتجنب إزالة المحتوى أو تقييد الحسابات.</li>
+                    <li><i class="fas fa-ban"></i> **تجنب البيع المباشر:** التركيز على "التعاون" و"تبادل القيمة" بدلاً من الترويج الصريح.</li>
+                </ul>
+                <p class="text-center mt-6 text-sm text-gray-500">العديد من المجموعات تفرض رسومًا على "الرعاية" أو "المنشورات المثبتة" بدلاً من الإعلانات المباشرة.</p>
+            </div>
+
+            <!-- Slide 13: Detailed Cost Estimates - Part 1 - Financial breakdown -->
+            <div class="slide" id="slide13">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-calculator icon-large"></i>
+                    <h1>تقديرات التكاليف التفصيلية (1/3)</h1>
+                </div>
+                <p class="text-center text-lg mb-6">تم استخدام سعر صرف تقديري قدره 48 جنيهًا مصريًا للدولار الأمريكي.</p>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>فئة التكلفة</th>
+                            <th>التفاصيل</th>
+                            <th>التكلفة السنوية التقديرية (جنيه مصري)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>**تخطيط وتصوير المنتج**</td>
+                            <!-- Updated calculation based on new EGP values from slide 11 -->
+                            <td>إنتاج 2 فيديو رئيسي (60-90 ثانية) و 5 مقاطع قصيرة (15-30 ثانية)، وجلسة تصوير فوتوغرافي واحدة.</td>
+                            <td>(2 * 288,000) + (5 * 72,000) + 3,000 = 576,000 + 360,000 + 3,000 = 939,000</td>
+                        </tr>
+                        <tr>
+                            <td>**حوافز المندوبين المعينين**</td>
+                            <td>108 مندوب × 5,000 جنيه مصري/مندوب شهريًا (راتب أساسي + مكافآت أداء).</td>
+                            <td>6,480,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Slide 14: Detailed Cost Estimates - Part 2 - Financial breakdown continuation -->
+            <div class="slide" id="slide14">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-calculator icon-large"></i>
+                    <h1>تقديرات التكاليف التفصيلية (2/3)</h1>
+                </div>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>فئة التكلفة</th>
+                            <th>التفاصيل</th>
+                            <th>التكلفة السنوية التقديرية (جنيه مصري)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>**رسوم النشر/التعاون مع المجموعات**</td>
+                            <td>160 مجموعة × 300 جنيه مصري/مجموعة شهريًا (رسوم تعاون مع مديري المجموعات أو منشورات مميزة).</td>
+                            <td>576,000</td>
+                        </tr>
+                        <tr>
+                            <td>**رواتب الموظفين (النشر والمراقبة)**</td>
+                            <td>
+                                <ul>
+                                    <li>مدير وسائل التواصل الاجتماعي (1)</li>
+                                    <li>مديرو المجتمع (2)</li>
+                                    <li>منسقو التسويق/موظفو المراقبة (3)</li>
+                                    <li>محلل بيانات (1 - بدوام جزئي/عقد)</li>
+                                </ul>
+                            </td>
+                            <td>3,156,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Slide 15: Detailed Cost Estimates - Part 3 (Total) - Final cost summary -->
+            <div class="slide" id="slide15">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-calculator icon-large"></i>
+                    <h1>تقديرات التكاليف التفصيلية (3/3)</h1>
+                </div>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>فئة التكلفة</th>
+                            <th>التفاصيل</th>
+                            <th>التكلفة السنوية التقديرية (جنيه مصري)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>**تكاليف الاختيار والتدريب**</td>
+                            <td>رسوم منصات التوظيف، ووقت المقابلات، وفحوصات الخلفية، وتكاليف التدريب الأولي.</td>
+                            <td>50,000 (مرة واحدة للسنة الأولى)</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">**إجمالي التكلفة السنوية التقديرية للحملة**</td>
+                            <td><strong class="text-blue-700 text-2xl">11,201,000 جنيه مصري</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <p class="text-center mt-6 text-sm text-gray-500">الاستثمار في الاختيار والتدريب أمر بالغ الأهمية لضمان فعالية الممثلين وامتثالهم.</p>
+            </div>
+
+            <!-- Slide 16: Regulatory Compliance and Risk Mitigation - Navigating platform rules -->
+            <div class="slide" id="slide16">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-shield-alt icon-large"></i>
+                    <h1>الامتثال التنظيمي وتخفيف المخاطر</h1>
+                </div>
+                <h2>نظرة عامة على سياسات الفيسبوك الإعلانية</h2>
+                <ul>
+                    <li><i class="fas fa-exclamation-triangle"></i> **حظر الممارسات الخادعة والمضللة:** يُمنع الإعلان عن المنتجات أو الخدمات التي تستخدم ممارسات خادعة.</li>
+                    <li><i class="fas fa-ban"></i> **المحتوى غير المقبول:** يُحظر المحتوى الصادم، أو المثير، أو العنيف، أو الموجه للبالغين، أو الألفاظ النابية.</li>
+                    <li><i class="fas fa-info-circle"></i> **المعلومات المضللة:** يجب أن تلتزم الإعلانات بسياسات ميتا المتعلقة بالمعلومات المضللة.</li>
+                    <li><i class="fas fa-medkit"></i> **القيود الخاصة بالصحة:** تخضع الإعلانات المتعلقة بالصحة لقيود خاصة (مثال: تشويه صورة الجسم، صور التحول).</li>
+                    <li><i class="fas fa-eye"></i> **عملية المراجعة:** تخضع الإعلانات لمراجعة آلية ويدوية، خاصة للصناعات الحساسة.</li>
+                </ul>
+                <p class="text-center mt-6 text-sm text-gray-500">المنتجات الدوائية تندرج ضمن "الصناعات الحساسة" للفيسبوك.</p>
+            </div>
+
+            <!-- Slide 17: Key Egyptian Regulations - Local legal requirements -->
+            <div class="slide" id="slide17">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-balance-scale-right icon-large"></i>
+                    <h1>اللوائح المصرية الرئيسية لإعلانات المنتجات الدوائية</h1>
+                </div>
+                <ul>
+                    <li><i class="fas fa-check-double"></i> **الموافقات المسبقة:** لا يجوز الإعلان إلا بعد الحصول على موافقة وزارة الصحة وهيئة الدواء المصرية. يجب عرض رقم التسجيل.</li>
+                    <li><i class="fas fa-file-contract"></i> **محتوى الإعلان:** يجب أن يتوافق مع جميع الموافقات الصادرة عن هيئة الدواء المصرية دون أي حذف أو إضافة.</li>
+                    <li><i class="fas fa-times-circle"></i> **القيود على الادعاءات:** لا يتضمن أساليب تشخيص أو علاج، ويحترم خصوصية المرضى. يُحظر الادعاء بأي تأثيرات علاجية للمكملات الغذائية.</li>
+                    <li><i class="fas fa-bullhorn"></i> **الإفصاحات الواضحة:** يجب أن تكون واضحة، وسهلة الفهم، وبارزة، وفي مكان قريب من الادعاء ذي الصلة.</li>
+                </ul>
+                <p class="text-center mt-6 text-sm text-gray-500">وجود طبقتين من التنظيم يتطلب مراجعة مسبقة لكل محتوى.</p>
+            </div>
+
+            <!-- Slide 18: Compliance & Ethical Marketing Strategies - Ensuring responsible promotion -->
+            <div class="slide" id="slide18">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-handshake-angle icon-large"></i>
+                    <h1>استراتيجيات ضمان الامتثال والتسويق الأخلاقي</h1>
+                </div>
+                <ul>
+                    <li><i class="fas fa-book"></i> **إرشادات وتدريب واضحان:** تطوير إرشادات شاملة وتدريب مكثف للممثلين.</li>
+                    <li><i class="fas fa-clipboard-check"></i> **عملية مراجعة واعتماد صارمة للمحتوى:** مراجعة متعددة المستويات (قانونية وطبية).</li>
+                    <li><i class="fas fa-chart-line"></i> **المراقبة المنتظمة:** مراقبة مستمرة لأنشطة الممثلين ومناقشات المجموعات.</li>
+                    <li><i class="fas fa-lightbulb"></i> **التركيز على المحتوى التعليمي والمعلوماتي:** بدلاً من عروض البيع المباشرة.</li>
+                    <li><i class="fas fa-tag"></i> **عرض الإفصاحات المطلوبة:** التأكد من عرض جميع الإفصاحات بشكل بارز.</li>
+                    <li><i class="fas fa-bell"></i> **آلية الإبلاغ السريع:** لإنشاء آلية للإبلاغ عن أي حالات عدم امتثال ومعالجتها بسرعة.</li>
+                </ul>
+                <p class="text-center mt-6 text-sm text-gray-500">التدريب الشامل والمراقبة المستمرة حاسمة للتخفيف من المخاطر.</p>
+            </div>
+
+            <!-- Slide 19: Financial Impact Analysis - Expected sales increase -->
+            <div class="slide" id="slide19">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-dollar-sign icon-large"></i>
+                    <h1>تحليل الأثر المالي</h1>
+                </div>
+                <h2>خط الأساس للمبيعات الشهرية الحالية: <span class="highlight-text-blue">1,000,000 جنيه مصري</span></h2>
+                <h2>الزيادة المتوقعة في المبيعات بعد تنفيذ الحملة:</h2>
+                <p>توقع زيادة شهرية تتراوح بين <strong class="highlight-text-green">5% إلى 15%</strong> خلال الأشهر الستة إلى الاثني عشر الأولى.</p>
+                <div class="slide-grid">
+                    <div class="grid-item">
+                        <i class="fas fa-arrow-up text-green-500"></i>
+                        <h3>الحد الأدنى (5% زيادة)</h3>
+                        <p>زيادة شهرية: <strong class="highlight-text-green">50,000 جنيه مصري</strong></p>
+                        <p>زيادة سنوية تراكمية: <strong class="highlight-text-green">600,000 جنيه مصري</strong></p>
+                    </div>
+                    <div class="grid-item">
+                        <i class="fas fa-arrow-up text-green-700"></i>
+                        <h3>الحد الأقصى (15% زيادة)</h3>
+                        <p>زيادة شهرية: <strong class="highlight-text-green">150,000 جنيه مصري</strong></p>
+                        <p>زيادة سنوية تراكمية: <strong class="highlight-text-green">1,800,000 جنيه مصري</strong></p>
+                    </div>
+                </div>
+                <p class="text-center mt-6 text-sm text-gray-500">هذه التقديرات تستند إلى اختراق شبكات مهنية جديدة وتأثير الأقران.</p>
+            </div>
+
+            <!-- Slide 20: Sales to Cost Ratio Calculation - ROI analysis -->
+            <div class="slide" id="slide20">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-chart-pie icon-large"></i>
+                    <h1>حساب نسبة المبيعات إلى التكاليف</h1>
+                </div>
+                <p class="text-center text-lg mb-6">إجمالي التكلفة السنوية للتسويق: <strong class="text-blue-700">11,201,000 جنيه مصري</strong></p>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>السيناريو</th>
+                            <th>الزيادة السنوية في المبيعات</th>
+                            <th>نسبة المبيعات إلى التكاليف</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>**الحد الأدنى (5% زيادة)**</td>
+                            <td>600,000 جنيه مصري</td>
+                            <td><strong class="highlight-text-red">0.05:1</strong></td>
+                        </tr>
+                        <tr>
+                            <td>**الحد الأقصى (15% زيادة)**</td>
+                            <td>1,800,000 جنيه مصري</td>
+                            <td><strong class="highlight-text-red">0.16:1</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-center mt-6">تشير هذه النسب إلى أن الحملة في عامها الأول ستكون <strong class="text-blue-600">استثمارًا استراتيجيًا</strong> أكثر من كونها محركًا فوريًا للربحية المباشرة.</p>
+                <ul class="mt-4">
+                    <li><i class="fas fa-info-circle"></i> بناء الثقة والولاء يستغرق وقتًا في التسويق الدوائي.</li>
+                    <li><i class="fas fa-info-circle"></i> السنة الأولى تتضمن تكاليف تأسيسية كبيرة لا تتكرر بنفس الحجم.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 21: Strategic Recommendations & Roadmap - Implementation plan -->
+            <div class="slide" id="slide21">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-road icon-large"></i>
+                    <h1>التوصيات الاستراتيجية وخارطة طريق التنفيذ</h1>
+                </div>
+                <h2>خطة التنفيذ المرحلي</h2>
+                <div class="slide-grid">
+                    <div class="grid-item">
+                        <i class="fas fa-flask"></i>
+                        <h3>المرحلة 1: التجريب (3-6 أشهر)</h3>
+                        <p>اختيار وتدريب دقيق للممثلين في محافظتين رئيسيتين. اختبار استراتيجيات التفاعل وجمع الملاحظات الأولية.</p>
+                    </div>
+                    <div class="grid-item">
+                        <i class="fas fa-expand"></i>
+                        <h3>المرحلة 2: التوسع (6-12 شهرًا)</h3>
+                        <p>التوسع التدريجي في جميع محافظات وجه بحري بناءً على الدروس المستفادة. تعزيز فريق الإدارة والمراقبة.</p>
+                    </div>
+                    <div class="grid-item">
+                        <i class="fas fa-wrench"></i>
+                        <h3>المرحلة 3: التحسين والتوسع المستمر (مستمر)</h3>
+                        <p>المراقبة والتحسين المستمر لأداء الحملة. استكشاف أنواع جديدة من المجموعات أو المنصات.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 22: Key Performance Indicators (KPIs) - Measuring success -->
+            <div class="slide" id="slide22">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-chart-bar icon-large"></i>
+                    <h1>مؤشرات الأداء الرئيسية (KPIs) لمراقبة النجاح</h1>
+                </div>
+                <ul>
+                    <li><i class="fas fa-circle-notch"></i> **الوصول والتفاعل:** عدد المجموعات، المنشورات، مشاهدات الفيديو، الإعجابات، التعليقات، المشاركات.</li>
+                    <li><i class="fas fa-user-check"></i> **أداء الممثلين:** مستويات النشاط والالتزام، جودة الملاحظات ورؤى السوق.</li>
+                    <li><i class="fas fa-magnifying-glass-chart"></i> **معلومات السوق:** الرؤى المكتسبة من مناقشات المجموعة، رصد النشاط التنافسي.</li>
+                    <li><i class="fas fa-sack-dollar"></i> **تأثير المبيعات:** نمو المبيعات الشهرية، عدد الاستفسارات عن المنتج.</li>
+                    <li><i class="fas fa-percent"></i> **العائد على الاستثمار:** نسبة المبيعات إلى التكاليف.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 23: Scalability & Continuous Improvement - Long-term vision -->
+            <div class="slide" id="slide23">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-arrows-rotate icon-large"></i>
+                    <h1>قابلية التوسع والتحسين المستمر</h1>
+                </div>
+                <ul>
+                    <li><i class="fas fa-laptop-code"></i> **حلول التكنولوجيا:** الاستثمار في أدوات ومنصات لتوزيع المحتوى وتتبع الأداء وتحليل البيانات.</li>
+                    <li><i class="fas fa-chalkboard-user"></i> **التدريب والتحفيز المستمر:** برامج تدريبية مستمرة للممثلين للحفاظ على تحديث معرفتهم ومهاراتهم.</li>
+                    <li><i class="fas fa-cogs"></i> **القدرة على التكيف مع السياسات واللوائح:** الحفاظ على مرونة الاستراتيجية للتكيف بسرعة مع التغييرات.</li>
+                    <li><i class="fas fa-comments-dollar"></i> **حلقة التغذية الراجعة:** إنشاء قنوات اتصال فعالة لضمان تدفق الملاحظات من الممثلين.</li>
+                </ul>
+                <p class="text-center mt-6 text-sm text-gray-500">النجاح على المدى الطويل يعتمد على المراقبة والتكيف المستمرين.</p>
+            </div>
+
+            <!-- Slide 24: Conclusion - Final summary and call to action -->
+            <div class="slide" id="slide24">
+                <div class="flex flex-col items-center w-full">
+                    <i class="fas fa-check-circle icon-large text-green-500"></i>
+                    <h1>الخلاصة</h1>
+                </div>
+                <ul>
+                    <li><i class="fas fa-star"></i> نهج استراتيجي ومبتكر للوصول إلى فئة الأطباء وطلاب الطب والصيدلة وطب الأسنان.</li>
+                    <li><i class="fas fa-hand-holding-medical"></i> بناء حضور موثوق به ومؤثر داخل المجتمعات المتخصصة عبر شبكة من الممثلين.</li>
+                    <li><i class="fas fa-money-bill-trend-up"></i> استثمار كبير في السنة الأولى، ولكنه أساس لزيادة مستدامة في المبيعات على المدى الطويل.</li>
+                    <li><i class="fas fa-gavel"></i> الالتزام الصارم باللوائح المحلية وسياسات الفيسبوك أمر ضروري.</li>
+                    <li><i class="fas fa-forward"></i> يوصى بالبدء بمرحلة تجريبية لضبط الاستراتيجية قبل التوسع الكامل.</li>
+                </ul>
+                <p class="text-center mt-6 text-lg font-semibold text-blue-700">معًا، يمكننا تحقيق نجاح باهر في السوق المصري!</p>
+            </div>
+
+        </div>
+
+        <!-- Navigation Buttons - Controls for moving between slides -->
+        <div class="navigation-buttons">
+            <button id="prevBtn" class="nav-button">السابق</button>
+            <button id="nextBtn" class="nav-button">التالي</button>
+        </div>
+    </div>
+
+    <script>
+        // Get all slide elements
+        const slides = document.querySelectorAll('.slide');
+        // Get navigation buttons
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        // Initialize current slide index
+        let currentSlide = 0;
+
+        /**
+         * Displays the slide at the given index and updates navigation button states.
+         * @param {number} index - The index of the slide to show.
+         */
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    // Add 'active' class to show the slide
+                    slide.classList.add('active');
+                } else {
+                    // Remove 'active' class to hide other slides
+                    slide.classList.remove('active');
+                }
+            });
+            // Update button disabled states based on current slide
+            updateButtons();
+        }
+
+        /**
+         * Updates the disabled state of the 'Previous' and 'Next' buttons.
+         * 'Previous' is disabled on the first slide.
+         * 'Next' is disabled on the last slide.
+         */
+        function updateButtons() {
+            prevBtn.disabled = currentSlide === 0; // Disable 'Previous' if on the first slide
+            nextBtn.disabled = currentSlide === slides.length - 1; // Disable 'Next' if on the last slide
+        }
+
+        // Event listener for the 'Previous' button click
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--; // Decrement slide index
+                showSlide(currentSlide); // Show the previous slide
+            }
+        });
+
+        // Event listener for the 'Next' button click
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++; // Increment slide index
+                showSlide(currentSlide); // Show the next slide
+            }
+        });
+
+        // Initialize the presentation by showing the first slide when the page loads
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
